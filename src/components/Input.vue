@@ -28,7 +28,7 @@
     },
     methods: {
       loadAll() {
-        var data;
+//        var data;
         axios.get('http://localhost:8080/questions/all')
         .then(response => {
           this.questions=response.data;

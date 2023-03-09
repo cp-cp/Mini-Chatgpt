@@ -48,15 +48,18 @@
         <el-main class="chat-message">
           <el-scrollbar wrap-class="chat-area">
             <div class="chat-messages">
-              <el-card v-for="(card, index) in cards" :key="index"  style="width: 300px;height: auto;" >
-                <div v-if="card.title==='1'" class="text item">
-                  {{ card.body }}
-                </div>
-                <div v-if="card.title==='2'" class="text item">
-                  {{ card.body }}
-                </div>
-              </el-card>
-              Your chat messages go here 
+              <div :key="index"  v-for="(card, index) in cards" >
+                <el-card v-if="card.title==='1'" style="width: 300px;height: auto;margin-left: 20px;"  shadow="hover">
+                  <div  class="text item" style="">
+                    {{ card.body }}
+                  </div>
+                </el-card>                
+                <el-card v-if="card.title==='2'" style="width: 300px;height: auto;margin-left: auto;margin-right: 20px;margin-top: 20px;"  shadow="hover">
+                  <div  class="text item" style="">
+                    {{ card.body }}
+                  </div>
+                </el-card>
+              </div>
             </div>
           </el-scrollbar>
         </el-main>
@@ -80,6 +83,7 @@ export default {
   },
   data() {
     return {
+      isMainRendered: false, 
       cards: [{ title: '1', body: '我能帮你什么?' }],
       message:{message:""}
     }
@@ -94,12 +98,22 @@ export default {
         this.message=payload;
         console.log(this.message);
         this.cards.push(
-        { title: '2', body: this.message.message }
-      )
-    }
+          { title: '2', body: this.message.message }
+        );
+       // this.scrollTop();
+      const elMain = document.querySelector('.el-main');
+      // 在下一次 DOM 更新循环结束后执行自动滚动的代码
+      this.$nextTick(() => {
+        this.isMainRendered = true;
+        // 如果 el-main 组件存在，则自动滚动到最下面
+        if (elMain) {
+          elMain.scrollTop = elMain.scrollHeight;
+        }
+      });
+    },
   },
   mounted() {
-    this.$on('sendMessage', this.addMessage);
+//    this.$on('sendMessage', this.addMessage);
   },
 }
 </script>
@@ -133,8 +147,10 @@ export default {
   .el-main {
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
-    line-height: 160px;
+    text-align: left;
+    line-height: 20px;
+    height: 350px;
+
   }
   
   body > .el-container {
