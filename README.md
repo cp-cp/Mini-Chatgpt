@@ -1,0 +1,2 @@
+# Mini-Chatgpt
+A homework.
