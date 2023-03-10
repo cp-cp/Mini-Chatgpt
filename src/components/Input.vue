@@ -28,7 +28,6 @@
     },
     methods: {
       loadAll() {
-//        var data;
         axios.get('http://localhost:8080/questions/all')
         .then(response => {
           this.questions=response.data;
@@ -36,8 +35,6 @@
         .catch(error => {
           console.log(error);
         });
-        //const results = response.data;
-        //this.questions=results;
         return [];
       },
       querySearchAsync(queryString, cb) {
@@ -61,12 +58,10 @@
         console.log(item);
       },
       changed(){
-//        this.$refs.autocomplete.suggestions = [];
         this.state='';
       },
       sendMessage(){
         this.$emit('my-event', { message: this.state })
-        //alert(this.state);
       }
     },
     mounted() {
