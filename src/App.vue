@@ -19,13 +19,11 @@
 
 <script>
 import Input from './components/Input.vue';
-import Button from './components/Button.vue';
 import MainTalk from './components/MainTalk.vue';
 import Quest from './components/Quest.vue';
 export default {
   components: { 
     Input,
-    Button,
     MainTalk,
     Quest
   },
@@ -62,7 +60,7 @@ export default {
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 40px;
   }
   
   body > .el-container {

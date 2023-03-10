@@ -12,11 +12,12 @@
     placement="top-start"
     :style="{ width: '400px' }"
     ></el-autocomplete>
-    <el-button @click="sendMessage">发送</el-button>
+    <el-button @click="sendMessage" ref="sendTo" :disabled="isDisabled">发送</el-button>
   </div>
 </template>
 <script>
   import axios from 'axios';
+import { computed } from 'vue';
   export default {
     data() {
       return {
@@ -28,9 +29,10 @@
     },
     methods: {
       loadAll() {
-        axios.get('http://localhost:8080/questions/all')
+        axios.get('/questions/all')
         .then(response => {
-          this.questions=response.data;
+          this.questions=response.data.data;
+          // console.log(this.questions.data);
         })
         .catch(error => {
           console.log(error);
@@ -66,6 +68,11 @@
     },
     mounted() {
       this.restaurants = this.loadAll();
+    },
+    computed: {
+      isDisabled() {
+        return this.state.length===0;
+      }
     }
   };
 </script>
