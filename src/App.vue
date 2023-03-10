@@ -2,13 +2,17 @@
   <div id="app">
   <el-container>
       <el-aside width="200px">
-        <el-button @click="rpplus">click here</el-button>
+        <router-link to="/talk">Main Talk</router-link>
+        <hr>
+        <router-link to="/quest">Quest</router-link>
+        <hr>
+        <router-link to="/ans">Ans</router-link>
       </el-aside>
-        <!-- <keep-alive>
+        <keep-alive>
           <router-view></router-view>
-        </keep-alive> -->
-        <MainTalks v-if="mount==-1"></MainTalks>
-        <Quest v-else-if="mount==1"></Quest>
+        </keep-alive>
+        <!-- <MainTalks v-if="mount==-1"></MainTalks>
+        <Quest v-else-if="mount==1"></Quest> -->
     </el-container>
   </div>
 </template>
@@ -16,13 +20,13 @@
 <script>
 import Input from './components/Input.vue';
 import Button from './components/Button.vue';
-import MainTalks from './components/MainTalk.vue';
+import MainTalk from './components/MainTalk.vue';
 import Quest from './components/Quest.vue';
 export default {
   components: { 
     Input,
     Button,
-    MainTalks,
+    MainTalk,
     Quest
   },
   methods: {
@@ -51,7 +55,7 @@ export default {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
-    line-height: 200px;
+    line-height: 190px;
   }
   
   .el-main {
