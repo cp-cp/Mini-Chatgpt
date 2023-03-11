@@ -12,7 +12,7 @@
     placement="top-start"
     :style="{ width: '400px' }"
     ></el-autocomplete>
-    <el-button @click="sendMessage" ref="sendTo" :disabled="isDisabled">发送</el-button>
+    <el-button @click="sendMessage" ref="sendTo" :disabled="IsDisabled">发送</el-button>
   </div>
 </template>
 <script>
@@ -44,7 +44,6 @@ import { computed } from 'vue';
         var questions=this.questions;
         console.log(questions);
         var results = questions;//queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
-
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           cb(results);
@@ -70,8 +69,8 @@ import { computed } from 'vue';
       this.restaurants = this.loadAll();
     },
     computed: {
-      isDisabled() {
-        return this.state.length===0;
+      IsDisabled() {
+        return (this.state.length===0);
       }
     }
   };

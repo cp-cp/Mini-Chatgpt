@@ -35,6 +35,7 @@
 <script>
 import Input from './Input.vue';
 import Card from './Card.vue';
+import axios from 'axios';
 export default {
     components: {
         Input,
@@ -53,18 +54,32 @@ export default {
                 setTimeout(resolve, delay)
             })
         },
+        findAns(messages) {
+            // 将 axios.get 包装为 Promise，并返回 Promise 实例
+            return new Promise((resolve, reject) => {
+                axios.get(`/questions/all`)
+                    .then(response => {
+                        resolve(response.data); // 将响应数据传递给 resolve 函数
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        reject(error); // 将错误对象传递给 reject 函数
+                    });
+            });
+        },
         async onMyEvent(payload) {
             const button = this.$refs.sendInput.$refs.sendTo;
-            button.disabled = true;
+            //button.disabled = true;记得打开
             this.message = payload;
-            console.log(payload);
             this.cards.push(
                 { title: '2', body: this.message.message }
             );
             await this.wait(500);
-            button.disabled = false;
+            //button.disabled= false;记得打开
+            const ans=await this.findAns(this.message.message);
+            console.log(ans.data[0].ans);
             this.cards.push(
-                { title: '1', body: "hi" }
+                { title: '1', body: ans.data[0].ans}
             )
             const elMain = document.querySelector('.el-main');
             // 在下一次 DOM 更新循环结束后执行自动滚动的代码
@@ -80,4 +95,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+    .el-card {
+        height: auto; /* 自动调整高度 */
+    }
+    .card-content p {
+    white-space: pre-wrap; /* 保留空白符并自动换行 */
+    word-wrap: break-word; /* 在单词内换行 */
+    }
+</style>

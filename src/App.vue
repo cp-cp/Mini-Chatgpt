@@ -7,6 +7,8 @@
         <router-link to="/quest">Quest</router-link>
         <hr>
         <router-link to="/ans">Ans</router-link>
+        <hr>
+        <router-link to="/hot">Hot</router-link>
       </el-aside>
         <keep-alive>
           <router-view></router-view>
@@ -21,11 +23,13 @@
 import Input from './components/Input.vue';
 import MainTalk from './components/MainTalk.vue';
 import Quest from './components/Quest.vue';
+import Hot from './components/Hot.vue';
 export default {
   components: { 
     Input,
     MainTalk,
-    Quest
+    Quest,
+    Hot
   },
   methods: {
     rpplus(){
@@ -53,7 +57,7 @@ export default {
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
-    line-height: 190px;
+    line-height: 120px;
   }
   
   .el-main {
