@@ -23,9 +23,11 @@
     mounted() {
       this.timer = setInterval(() => {
         if (this.currentLength < this.text.length) {
+          this.$emit('text-loading')
           this.currentLength++
         } else {
           clearInterval(this.timer)
+          this.$emit('text-complete')
         }
       }, 100)
     },

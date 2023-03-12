@@ -5,14 +5,14 @@
     v-model="state"
     :fetch-suggestions="querySearchAsync"
     placeholder="请输入内容"
-    @keyup.enter.native="changed"
+    @keydown.enter.native="changed"
     @select="handleSelect"
-    value-key	="quest"
+    value-key	="content"
     clearable
     placement="top-start"
     :style="{ width: '400px' }"
     ></el-autocomplete>
-    <el-button @click="sendMessage" ref="sendTo" :disabled="IsDisabled">发送</el-button>
+    <el-button @click="sendMessage" ref="sendTo" :disabled="IsDisabled" style="margin-left: 10px;">发送</el-button>
   </div>
 </template>
 <script>
@@ -29,10 +29,10 @@ import { computed } from 'vue';
     },
     methods: {
       loadAll() {
-        axios.get('/questions/all')
+        axios.get('http://localhost:8080/questions/all')
         .then(response => {
-          this.questions=response.data.data;
-          // console.log(this.questions.data);
+          this.questions=response.data;
+           console.log(this.questions);
         })
         .catch(error => {
           console.log(error);
@@ -59,6 +59,8 @@ import { computed } from 'vue';
         console.log(item);
       },
       changed(){
+        if(this.$refs.sendTo.disabled)return;
+        this.sendMessage();
         this.state='';
       },
       sendMessage(){

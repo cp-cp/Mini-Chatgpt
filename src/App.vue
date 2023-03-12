@@ -2,13 +2,26 @@
   <div id="app">
   <el-container>
       <el-aside width="200px">
-        <router-link to="/talk">Main Talk</router-link>
+        <router-link to="/talk">
+          <i class="el-icon-s-comment" style="color: white;margin-right: 10px;"></i>
+          Main Talk
+        </router-link>
         <hr>
-        <router-link to="/quest">Quest</router-link>
+        <router-link to="/quest">
+          <i class="el-icon-question" style="color: white;margin-right: 10px;"></i>
+          Quest
+        </router-link>
         <hr>
-        <router-link to="/ans">Ans</router-link>
+        <router-link to="/ans">
+          <i class="el-icon-edit" style="color: white;margin-right: 10px;"></i>
+          Ans
+        </router-link>
         <hr>
-        <router-link to="/hot">Hot</router-link>
+        <router-link to="/hot">
+          <i class="el-icon-s-opportunity" style="color: white;margin-right: 10px;"></i>
+          Hot
+        </router-link>
+        <hr>
       </el-aside>
         <keep-alive>
           <router-view></router-view>
@@ -47,50 +60,47 @@ export default {
 
 <style>
   .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
+    background-color: #575c64;
+    color: #ffffff;
     text-align: center;
     line-height: 60px;
   }
   
   .el-aside {
-    background-color: #D3DCE6;
+    background-color: #293037;
     color: #333;
     text-align: center;
     line-height: 120px;
   }
-  
   .el-main {
-    background-color: #E9EEF3;
+    background-color: #ccd9e7;     
     color: #333;
     text-align: center;
     line-height: 40px;
   }
-  
   body > .el-container {
     margin-bottom: 40px;
   }
-  
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
-  
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
   }
+
+  .router-link-active {    
+    text-decoration: none;
+  }
+  a{    
+    text-decoration: none;
+    color: #fff;
+  }
 </style>
 <style type="text/css">
-/*
-	找到html标签、body标签，和挂载的标签
-	都给他们统一设置样式
-*/
   html,body,#app,.el-container{
-        /*设置内部填充为0，几个布局元素之间没有间距*/
         padding: 0px;
-         /*外部间距也是如此设置*/
         margin: 0px;
-        /*统一设置高度为100%*/
         height: 100%;
     }
 </style>
