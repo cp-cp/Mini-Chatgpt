@@ -32,17 +32,17 @@ import { computed } from 'vue';
         axios.get('http://localhost:8080/questions/all')
         .then(response => {
           this.questions=response.data;
-           console.log(this.questions);
+           //console.log(this.questions);
         })
         .catch(error => {
-          console.log(error);
+          //console.log(error);
         });
         return [];
       },
       querySearchAsync(queryString, cb) {
         var restaurants = this.restaurants;
         var questions=this.questions;
-        console.log(questions);
+        //console.log(questions);
         var results = questions;//queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
@@ -56,7 +56,7 @@ import { computed } from 'vue';
       },
       handleSelect(item) {
         this.disabled=true;
-        console.log(item);
+        //console.log(item);
       },
       changed(){
         if(this.$refs.sendTo.disabled)return;

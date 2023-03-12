@@ -24,6 +24,12 @@
                                 {{ card.body}}
                             </div>
                         </el-card>
+                        <el-button v-if="card.title === '3'"
+                            style="margin-left:20px;text-align: left;width: 100px;"
+                        >添加问题</el-button>
+                        <el-button v-if="card.title === '4'"
+                            style="margin-left:20px;text-align: left;width: 100px;"
+                        >添加答案</el-button>
                     </div>
                 </div>
             </el-scrollbar>
@@ -86,7 +92,9 @@ export default {
             );
             await this.wait(500);
             const ans=await this.findAns(this.message.message);
-            if(ans.lenth){
+            console.log(ans);
+//            console.log(ans.length);
+            if(ans.length){
                 if(ans[0].answers.lenth){
                     console.log(ans[0].answers[0].content);
                     await this.cards.push(
@@ -97,12 +105,17 @@ export default {
                     await this.cards.push(
                         { title: '1', body: "目前无答案。"}
                     )
-
-                }                
+                    await this.cards.push(
+                        { title: '4', body: "添加答案按钮"}
+                    )   
+                }             
             }
             else{
                     await this.cards.push(
                         { title: '1', body: "目前没有这个问题。"}
+                    )
+                    await this.cards.push(
+                        { title: '3', body: "添加问题按钮"}
                     )
             }
             const elMain = document.querySelector('.el-main');
