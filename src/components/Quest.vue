@@ -3,10 +3,18 @@ import QuestionList from './QuestionList.vue';
 
 <template>
   <el-container>
-        <el-main class="chat-message">
-        <QuestionList></QuestionList>
+        <el-main>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
         </el-main>
-        <el-footer class="chat-input">
+        <el-footer>
+            <router-link to="/myquestlist">
+                My Question List
+            </router-link>
+            <router-link to="/allquestlist">
+                All Question List
+            </router-link>
         </el-footer>
     </el-container>
 </template>
