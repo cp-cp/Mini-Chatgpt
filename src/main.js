@@ -4,13 +4,18 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import router from './router';
-import './mock'
+import './mock';
+import Vuex from 'vuex';
+import store from './store/store';
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+Vue.use(Vuex);
+
 
 new Vue({
+  store,
   render: h => h(App),
   router:router
 }).$mount('#app')
