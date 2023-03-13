@@ -15,7 +15,8 @@ import QuestionList from './QuestionList.vue';
             <router-link to="/allquestlist">
                 All Question List
             </router-link>
-            <router-link to="/addquestion">
+
+            <router-link :to="{ path: '/addquestion'}">
                 Add Question
             </router-link>
         </el-footer>

@@ -7,7 +7,7 @@
     placeholder="请输入内容"
     @keydown.enter.native="changed"
     @select="handleSelect"
-    value-key	="content"
+    value-key	="title"
     clearable
     placement="top-start"
     :style="{ width: '400px' }"

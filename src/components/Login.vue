@@ -43,6 +43,7 @@ export default {
                 // 登录成功，更新isAuthenticated状态并跳转到主页
                 //localStorage.setItem('isAuthenticated', 'true');
                 this.setIsAuthenticated(true);
+                this.setUserName(this.form.username);
                 this.$router.push({ name: 'mainpage' });
               } else {
                 // 登录失败，弹出提示框
@@ -63,7 +64,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .login-form {
   max-width: 400px;
   margin: 50px auto;

@@ -15,6 +15,9 @@
                         <el-form-item label="asker">
                             <span>{{ props.row.asker }}</span>
                         </el-form-item>
+                        <el-form-item label="title">
+                            <span>{{ props.row.title }}</span>
+                        </el-form-item>
                         <el-form-item label="content">
                             <span>{{ props.row.content }}</span>
                         </el-form-item>
@@ -25,13 +28,13 @@
             </el-table-column>
             <el-table-column prop="asker" label="asker" width="180">
             </el-table-column>
-            <el-table-column prop="content" label="content" width="180">
+            <el-table-column prop="title" label="title" width="180">
             </el-table-column>
             <el-table-column label="操作">
-                <!-- <template slot-scope="scope">
+                <template slot-scope="scope">
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                </template> -->
+                </template>
             </el-table-column>
         </el-table>
 `       <el-pagination align='center' 
@@ -50,7 +53,7 @@
     export default {
         data() {
             return {
-                tableData: [{asker:"",content:"",id:""}],
+                tableData: [{asker:"",content:"",id:"",title:"",}],
                 currentPage: 1, // 当前页码
                 pageSize: 8 // 每页的数据条数
             }

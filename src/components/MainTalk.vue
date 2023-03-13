@@ -24,9 +24,13 @@
                                 {{ card.body}}
                             </div>
                         </el-card>
-                        <el-button v-if="card.title === '3'"
-                            style="margin-left:20px;text-align: left;width: 100px;"
-                        >添加问题</el-button>
+                        <!--添加问题-->
+                        <router-link :to="{path: '/addquestion' ,query: { quest: card.body }}">
+                            <el-button v-if="card.title === '3'"
+                                style="margin-left:20px;text-align: left;width: 100px;"
+                            >添加问题</el-button>
+                        </router-link>
+                        <!--添加答案-->
                         <el-button v-if="card.title === '4'"
                             style="margin-left:20px;text-align: left;width: 100px;"
                         >添加答案</el-button>
@@ -53,7 +57,7 @@ export default {
         return {
             isMainRendered: false,
             cards: [{ title: '1', body: '我能帮你什么?' }],
-            message: { message:null }
+            message: { message:"" }
         }
     },
     methods: {
@@ -92,7 +96,8 @@ export default {
             );
             await this.wait(500);
             const ans=await this.findAns(this.message.message);
-            console.log(ans);
+            const quest=this.message.message;
+//            console.log(this.message.message);
 //            console.log(ans.length);
             if(ans.length){
                 if(ans[0].answers.lenth){
@@ -106,7 +111,7 @@ export default {
                         { title: '1', body: "目前无答案。"}
                     )
                     await this.cards.push(
-                        { title: '4', body: "添加答案按钮"}
+                        { title: '4', body: this.message.message}
                     )   
                 }             
             }
@@ -114,19 +119,11 @@ export default {
                     await this.cards.push(
                         { title: '1', body: "目前没有这个问题。"}
                     )
+//                    console.log(this.message.message)
                     await this.cards.push(
-                        { title: '3', body: "添加问题按钮"}
+                        { title: '3', body: this.message.message}
                     )
             }
-            const elMain = document.querySelector('.el-main');
-            // 在下一次 DOM 更新循环结束后执行自动滚动的代码
-            this.$nextTick(() => {
-                this.isMainRendered = true;
-                // 如果 el-main 组件存在，则自动滚动到最下面
-                if (elMain) {
-                    elMain.scrollTop = elMain.scrollHeight;
-                }
-            })
             //button.disabled= false;//记得打开
         },
         handleTextLoading() {
