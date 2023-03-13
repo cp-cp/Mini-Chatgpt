@@ -32,7 +32,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['setIsAuthenticated']),
+    ...mapMutations(['setIsAuthenticated','setUserName']),
     handleSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -43,6 +43,7 @@ export default {
                 // 登录成功，更新isAuthenticated状态并跳转到主页
                 //localStorage.setItem('isAuthenticated', 'true');
                 this.setIsAuthenticated(true);
+                console.log(response);
                 this.setUserName(this.form.username);
                 this.$router.push({ name: 'mainpage' });
               } else {
