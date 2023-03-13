@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      isAuthenticated: false
+      isAuthenticated: true,//记得修改回false
     },
     mutations: {
       setIsAuthenticated(state, isAuthenticated) {

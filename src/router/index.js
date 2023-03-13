@@ -9,6 +9,7 @@ import AllQuestionList from "../components/QuestionList.vue"
 import Login from "../components/Login.vue"
 import store from '../store/store.js';
 import mainpage from '../components/MainPage.vue'
+import AddQuestion from '../components/AddQuestion.vue'
 
 Vue.use(VueRouter)
 
@@ -22,10 +23,11 @@ const router= new VueRouter({
                 {path: '/talk',component:MainTalks},
                 {path: '/quest',
                     component:Quest,
-                    children:[{
-                        path:'/myquestlist',component:MyQuestionList,
-                        path:'/allquestlist',component:AllQuestionList,
-                    }]
+                    children:[
+                        {path:'/myquestlist',component:MyQuestionList,},
+                        {path:'/allquestlist',component:AllQuestionList,},
+                        {path:'/addquestion',component:AddQuestion,},
+                    ]
                 },
                 {path: '/ans',component:Ans},
                 {path: '/hot',component:Hot},

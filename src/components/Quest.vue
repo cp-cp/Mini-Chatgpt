@@ -15,6 +15,9 @@ import QuestionList from './QuestionList.vue';
             <router-link to="/allquestlist">
                 All Question List
             </router-link>
+            <router-link to="/addquestion">
+                Add Question
+            </router-link>
         </el-footer>
     </el-container>
 </template>
