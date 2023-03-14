@@ -4,9 +4,9 @@ import QuestionList from './QuestionList.vue';
 <template>
   <el-container>
         <el-main>
-            <keep-alive>
+            <!-- <keep-alive> -->
               <router-view></router-view>
-            </keep-alive>
+            <!-- </keep-alive> -->
         </el-main>
         <el-footer>
             <router-link to="/myquestlist">

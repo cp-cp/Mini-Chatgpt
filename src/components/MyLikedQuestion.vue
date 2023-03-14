@@ -21,9 +21,6 @@
                         <el-form-item label="content">
                             <span>{{ props.row.content }}</span>
                         </el-form-item>
-                        <!-- <el-form-item label="likes">
-                            <span>{{ props.row.content }}</span>
-                        </el-form-item> -->
                     </el-form>
                 </template>
             </el-table-column>
@@ -91,7 +88,7 @@ import Like from './Like.vue';
                 return row[property] === value;
             },
             loadAll() {
-                axios.get('http://localhost:8080/questions/all')
+                axios.get(`http://localhost:8080/user/likedQuestions/${store.state.userid}`)
                     .then(response => {
                     this.tableData = response.data;
                     console.log(response);

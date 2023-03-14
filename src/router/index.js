@@ -4,12 +4,13 @@ import MainTalks from "../components/MainTalk.vue"
 import Quest from "../components/Quest.vue"
 import Ans from "../components/Ans.vue"
 import Hot from "../components/Hot.vue"
-import MyQuestionList from "../components/MyQuestion.vue"
+import MyLikedQuestion from "../components/MyLikedQuestion.vue"
 import AllQuestionList from "../components/QuestionList.vue"
 import Login from "../components/Login.vue"
 import store from '../store/store.js';
 import mainpage from '../components/MainPage.vue'
 import AddQuestion from '../components/AddQuestion.vue'
+import MyAskedQuestionList from '../components/MyAskedQuestion.vue'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const router= new VueRouter({
                 {path: '/quest',
                     component:Quest,
                     children:[
-                        {path:'/myquestlist',component:MyQuestionList,},
+                        {path:'/mylikedquestlist',component:MyLikedQuestion,},
+                        {path:'/myaskedquestlist',component:MyAskedQuestionList,},
                         {path:'/allquestlist',component:AllQuestionList,},
                         {path:'/addquestion',component:AddQuestion,},
                     ]

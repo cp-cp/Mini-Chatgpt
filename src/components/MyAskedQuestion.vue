@@ -15,6 +15,9 @@
                         <el-form-item label="asker">
                             <span>{{ props.row.asker }}</span>
                         </el-form-item>
+                        <el-form-item label="title">
+                            <span>{{ props.row.title }}</span>
+                        </el-form-item>
                         <el-form-item label="content">
                             <span>{{ props.row.content }}</span>
                         </el-form-item>
@@ -25,13 +28,13 @@
             </el-table-column>
             <el-table-column prop="asker" label="asker" width="180">
             </el-table-column>
-            <el-table-column prop="content" label="content" width="180">
+            <el-table-column prop="title" label="title" width="180">
             </el-table-column>
             <el-table-column label="操作">
-                <!-- <template slot-scope="scope">
+                <template slot-scope="scope">
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                </template> -->
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+                </template>
             </el-table-column>
         </el-table>
 `       <el-pagination align='center' 
@@ -47,16 +50,13 @@
 </template>
 <script>
     import axios from 'axios';
+    import store from '@/store/store';
     export default {
-        props:{
-            username:String,
-        },
         data() {
             return {
-                tableData: [{asker:"",content:"",id:""}],
+                tableData: [],
                 currentPage: 1, // 当前页码
-                total:this.tableData.length,
-                pageSize: 10 // 每页的数据条数
+                pageSize: 8 // 每页的数据条数
             }
         },
         methods: {
@@ -88,22 +88,22 @@
                 return row[property] === value;
             },
             loadAll() {
-                axios.get('http://localhost:8080/questions/all')
-                .then(response => {
-                    this.tableData=response.data.filter((data)=>{
-                        return data.asker===username;
-                    });
-                    //console.log(this.tableData);
-                })
-                .catch(error => {
+                axios.get(`http://localhost:8080/user/askedQuestions/${store.state.userid}`)
+                    .then(response => {
+                    this.tableData = response.data;
+                    console.log(response);
+                    })
+                    .catch(error => {
                     console.log(error);
-                });
-                return [];
+                    });
+                },
             },
-        },
         mounted() {
             this.loadAll();
         },
+        activated() {
+            this.loadAll();
+        }
     }
 </script>
 <style>

@@ -5,8 +5,9 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      isAuthenticated: true,//记得修改回false
+      isAuthenticated: false,//记得修改回false
       username:"",
+      userid:0,
     },
     mutations: {
       setIsAuthenticated(state, isAuthenticated) {
@@ -14,7 +15,10 @@ const store = new Vuex.Store({
       },
       setUserName(state, username) {
         state.username = username
-      }
+      },
+      setUserId(state, id) {
+        state.userid = id
+      },
     }
   })
 
