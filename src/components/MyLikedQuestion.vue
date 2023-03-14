@@ -24,12 +24,16 @@
                     </el-form>
                 </template>
             </el-table-column>
-            <el-table-column prop="id" label="id"></el-table-column>
-            <el-table-column prop="asker" label="asker" width="180"></el-table-column>
-            <el-table-column prop="title" label="title" width="180"></el-table-column>
+            <el-table-column   :key="uniqueKey" prop="id" label="id"></el-table-column>
+            <el-table-column  :key="uniqueKey"  prop="asker" label="asker" width="180"></el-table-column>
+            <el-table-column   :key="uniqueKey" prop="title" label="title" width="180"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <like :questionId="scope.row.id"></like>
+                    <like 
+                    :questionId="scope.row.id"
+                    :key="uniqueKey"
+                    @click.native.prevent="deleteRow(scope.$index, tableData)"
+                    ></like>
                     <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
                 </template>
@@ -56,10 +60,17 @@ import Like from './Like.vue';
             return {
                 tableData: [],
                 currentPage: 1, // 当前页码
-                pageSize: 8 // 每页的数据条数
+                pageSize: 8, // 每页的数据条数
+                uniqueKey: 0,
             }
         },
         methods: {
+            deleteRow(index, rows) {
+                //await this.wait(100);
+                this.uniqueKey++;
+                this.loadAll();
+                rows.splice(index, 1);
+            },
             //每页条数改变时触发 选择一页显示多少行
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
@@ -68,6 +79,7 @@ import Like from './Like.vue';
             },
             //当前页改变时触发 跳转其他页
             handleCurrentChange(val) {
+                this.uniqueKey++;
                 console.log(`当前页: ${val}`);
                 this.currentPage = val;
             },
@@ -100,6 +112,9 @@ import Like from './Like.vue';
             },
         mounted() {
             this.loadAll();
+            setInterval(() => {
+            this.uniqueKey++
+            }, 10000)
         },
     }
 </script>

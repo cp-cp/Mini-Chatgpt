@@ -2,7 +2,7 @@ import VueRouter from "vue-router";
 import Vue from "vue";
 import MainTalks from "../components/MainTalk.vue"
 import Quest from "../components/Quest.vue"
-import Ans from "../components/Ans.vue"
+import AddAnswer from "../components/AddAnswer.vue"
 import Hot from "../components/Hot.vue"
 import MyLikedQuestion from "../components/MyLikedQuestion.vue"
 import AllQuestionList from "../components/QuestionList.vue"
@@ -31,7 +31,7 @@ const router= new VueRouter({
                         {path:'/addquestion',component:AddQuestion,},
                     ]
                 },
-                {path: '/ans',component:Ans},
+                {path: '/ans',component:AddAnswer},
                 {path: '/hot',component:Hot},
             ],
         },

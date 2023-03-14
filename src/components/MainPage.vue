@@ -57,7 +57,7 @@
           </el-submenu>
 
           <el-menu-item index="3">
-            <router-link to="/hot">
+            <router-link to="/ans">
               <i class="el-icon-edit" style="color: white;margin-right: 10px;"></i>
               <span>Answer</span>
             </router-link>
