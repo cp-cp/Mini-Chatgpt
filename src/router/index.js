@@ -3,7 +3,7 @@ import Vue from "vue";
 import MainTalks from "../components/MainTalk.vue"
 import Quest from "../components/Quest.vue"
 import AddAnswer from "../components/AddAnswer.vue"
-import Hot from "../components/Hot.vue"
+import LikeRank from "../components/LikeRank.vue"
 import MyLikedQuestion from "../components/MyLikedQuestion.vue"
 import AllQuestionList from "../components/QuestionList.vue"
 import Login from "../components/Login.vue"
@@ -11,6 +11,7 @@ import store from '../store/store.js';
 import mainpage from '../components/MainPage.vue'
 import AddQuestion from '../components/AddQuestion.vue'
 import MyAskedQuestionList from '../components/MyAskedQuestion.vue'
+import AskRank from '../components/AskRank.vue'
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,8 @@ const router= new VueRouter({
                     ]
                 },
                 {path: '/ans',component:AddAnswer},
-                {path: '/hot',component:Hot},
+                {path: '/likerank',component:LikeRank},
+                {path: '/askrank',component:AskRank},
             ],
         },
         {path:'/login',component:Login,name:'login'}

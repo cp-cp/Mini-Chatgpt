@@ -63,12 +63,21 @@
             </router-link>
           </el-menu-item>
 
-          <el-menu-item index="4">
-            <router-link to="/hot">
-              <i class="el-icon-s-opportunity" style="color: white;margin-right: 10px;"></i>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-question" style="color: white;margin-right: 10px;"></i>
               <span>Hot</span>
-            </router-link>
-          </el-menu-item>
+            </template>
+            <el-menu-item-group>
+              <template slot="title">热榜</template>
+              <router-link to="/likerank">
+                <el-menu-item index="4-1">点赞排行</el-menu-item>
+              </router-link>
+              <router-link to="/askrank">
+                <el-menu-item index="4-2">回答排行</el-menu-item>
+              </router-link>
+            </el-menu-item-group>
+          </el-submenu>
           
 
           <el-menu-item index="5">
@@ -90,16 +99,8 @@
 </template>
   
 <script>
-import Input from './Input.vue';
-import MainTalk from './MainTalk.vue';
-import Quest from './Quest.vue';
-import Hot from './Hot.vue';
 export default {
   components: {
-    Input,
-    MainTalk,
-    Quest,
-    Hot
   },
   methods: {
     rpplus() {
