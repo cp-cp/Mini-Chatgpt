@@ -33,7 +33,7 @@ export default {
   methods: {
     async toggleLike() {
       try {
-        console.log(this.postId);
+        //console.log(this.postId);
         const url = this.liked
           ? `http://localhost:8080/user/deleteLikedQuestion/${this.postId}/${store.state.userid}`
           : `http://localhost:8080/user/addLikedQuestion/${this.postId}/${store.state.userid}`

@@ -89,9 +89,9 @@
         </el-menu>
 
       </el-aside>
-      <keep-alive>
+      <!-- <keep-alive> -->
         <router-view></router-view>
-      </keep-alive>
+      <!-- </keep-alive> -->
       <!-- <MainTalks v-if="mount==-1"></MainTalks>
           <Quest v-else-if="mount==1"></Quest> -->
     </el-container>

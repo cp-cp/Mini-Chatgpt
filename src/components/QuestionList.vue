@@ -35,7 +35,7 @@
                 <template  slot-scope="scope">
                     <like :key="uniqueKey" :questionId="scope.row.id"></like>
                     <router-link :to="{ path: '/ans', query: { quest: scope.row.title } }">
-                        <el-button style="margin-left:20px;text-align: left;width: 100px;">添加问题</el-button>
+                        <el-button style="margin-left:20px;text-align: left;width: 100px;">添加答案</el-button>
                     </router-link>
                     <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->

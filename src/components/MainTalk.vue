@@ -7,17 +7,39 @@
             <el-scrollbar wrap-class="chat-area">
                 <div class="chat-messages">
                     <div :key="index" v-for="(card, index) in cards">
+                        <!--欢迎词-->
+                        <div v-if="card.title === '0'">
+                            <Card v-if="card.title === '0'" style="width: 300px;height: auto;margin-left: 20px;"
+                                shadow="hover" @text-complete="handleTextComplete" @text-loading="handleTextLoading"
+                                :content="card.body">
+                            </Card>
+                        </div>
+                        <!--没有这个问题-->
+                        <div v-if="card.title === '5'">
+                            <Card v-if="card.title === '5'" style="width: 300px;height: auto;margin-left: 20px;"
+                                shadow="hover" @text-complete="handleTextComplete" @text-loading="handleTextLoading"
+                                :content="card.body">
+                            </Card>
+                        </div>
+                        <div v-if="card.title === '3'">
+                            <router-link :to="{ path: '/addquestion', query: { quest: card.body } }">
+                                <el-button style="margin-left:20px;text-align: left;width: 100px;">添加问题</el-button>
+                            </router-link>
+                        </div>
                         <!--问题回答-->
-                        <div v-if="card.title === '1'">
+                        <div>
                             <Card v-if="card.title === '1'" style="width: 300px;height: auto;margin-left: 20px;"
                                 shadow="hover" @text-complete="handleTextComplete" @text-loading="handleTextLoading"
                                 :content="card.body">
-                                <!-- <div class="text item" style="">
-                                    {{ card.body }}
-                                </div> -->
                             </Card>
-                            <like :questionId="card.questionId"></like>   
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <like v-if="card.title === '4'" :questionId="card.questionId"></like>
+                                <router-link v-if="card.title === '4'" :to="{ path: '/ans', query: { quest: card.body } }">
+                                    <el-button style="margin-left:20px;text-align: left;width: 100px;">添加答案</el-button>
+                                </router-link>
+                            </div>
                         </div>
+
                         <!--我的提问-->
                         <div v-if="card.title === '2'">
                             <el-card
@@ -28,17 +50,6 @@
                                 </div>
                             </el-card>
                         </div>
-                        <!--没有这个问题-->
-                        <div v-if="card.title === '3'">
-                            <router-link :to="{ path: '/addquestion', query: { quest: card.body } }">
-                                <el-button style="margin-left:20px;text-align: left;width: 100px;">添加问题</el-button>
-                            </router-link>
-                            <like :questionId="card.questionId"></like>   
-                            <!-- <el-button style="margin-left:20px;text-align: left;width: 100px;" @click="signTheProblem">点赞问题</el-button> -->
-                        </div>
-                        <!--添加答案-->
-                        <el-button v-if="card.title === '4'"
-                            style="margin-left:20px;text-align: left;width: 100px;">添加答案</el-button>
                     </div>
                 </div>
             </el-scrollbar>
@@ -63,7 +74,7 @@ export default {
     data() {
         return {
             isMainRendered: false,
-            cards: [{ title: '1', body: '我能帮你什么?',questionId:1}],
+            cards: [{ title: '0', body: '我能帮你什么?', questionId: 1 }],
             message: { message: "" }
         }
     },
@@ -99,37 +110,39 @@ export default {
             //button.disabled = true;//记得打开
             this.message = payload;
             this.cards.push(
-                { title: '2', body: this.message.message}
+                { title: '2', body: this.message.message }
             );
             await this.wait(500);
             const ans = await this.findAns(this.message.message);
             const quest = this.message.message;
-            console.log(ans);
+            //console.log(ans);
             //console.log(ans.length);
             if (ans.length) {
                 //console.log(ans[0].answers.length)
-                if (ans[0].answers.lenth!=0) {
-                    console.log(ans[0].id);
+                console.log(ans[0].id);
+                if (ans[0].answers.length != 0) {
                     await this.cards.push(
-                        { title: '1', body: ans[0].answers[0].content,questionId:ans[0].id}
+                        { title: '1', body: ans[0].answers[0].content, questionId: ans[0].id }
+                    )
+                    await this.cards.push(
+                        { title: '4', body: ans[0].title, questionId: ans[0].id }
                     )
                 }
                 else {
                     await this.cards.push(
-                        { title: '1', body: "目前无答案。",questionId:ans[0].id}
+                        { title: '1', body: "目前无答案。", questionId: ans[0].id }
                     )
                     await this.cards.push(
-                        { title: '4', body: this.message.message,questionId:ans[0].id}
+                        { title: '4', body: ans[0].title, questionId: ans[0].id }
                     )
                 }
             }
             else {
                 await this.cards.push(
-                    { title: '1', body: "目前没有这个问题。"}
+                    { title: '5', body: "目前没有这个问题。" }
                 )
-                //                    console.log(this.message.message)
                 await this.cards.push(
-                    { title: '3', body: this.message.message,}
+                    { title: '3', body: this.message.message, }
                 )
             }
             //button.disabled= false;//记得打开
