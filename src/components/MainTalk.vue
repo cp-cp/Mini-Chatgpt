@@ -2,6 +2,7 @@
     <el-container>
         <el-header>
             什么都没有
+            <el-button style="float: right;margin:10px;" @click="saveCards">储存对话</el-button>
         </el-header>
         <el-main class="chat-message">
             <el-scrollbar wrap-class="chat-area">
@@ -65,6 +66,7 @@ import Input from './Input.vue';
 import Card from './Card.vue';
 import axios from 'axios';
 import Like from './Like.vue';
+import store from '@/store/store';
 export default {
     components: {
         Input,
@@ -171,6 +173,25 @@ export default {
             })
             const button = this.$refs.sendInput.$refs.sendTo;
             //button.disabled = false;//记得打开
+        },
+        saveCards() {
+            //const data = JSON.stringify(this.cards.slice(1).map(card => card.body));
+            const filteredCards = this.cards.filter(card => card.title === '1' || card.title === '2'|| card.title === '5')
+            const contentArray = filteredCards.map(card => card.body)
+            const data = contentArray;//JSON.stringify(contentArray)
+            console.log(data);
+            axios.post(`http://localhost:8080/history/store/${store.state.userid}`, data, {
+                // headers: {
+                //     'Content-Type': 'application/json'
+                // }
+            })
+                .then(response => {
+                    alert("保存成功")
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 }

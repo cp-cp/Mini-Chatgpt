@@ -12,6 +12,7 @@ import mainpage from '../components/MainPage.vue'
 import AddQuestion from '../components/AddQuestion.vue'
 import MyAskedQuestionList from '../components/MyAskedQuestion.vue'
 import AskRank from '../components/AskRank.vue'
+import History from '../components/History.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,7 @@ const router= new VueRouter({
                 {path: '/ans',component:AddAnswer},
                 {path: '/likerank',component:LikeRank},
                 {path: '/askrank',component:AskRank},
+                {path: '/history',component:History},
             ],
         },
         {path:'/login',component:Login,name:'login'}

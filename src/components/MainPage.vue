@@ -65,7 +65,7 @@
 
           <el-submenu index="4">
             <template slot="title">
-              <i class="el-icon-question" style="color: white;margin-right: 10px;"></i>
+              <i class="el-icon-s-data" style="color: white;margin-right: 10px;"></i>
               <span>Hot</span>
             </template>
             <el-menu-item-group>
@@ -78,9 +78,13 @@
               </router-link>
             </el-menu-item-group>
           </el-submenu>
-          
-
           <el-menu-item index="5">
+            <router-link to="/history">
+              <i class="el-icon-folder-opened" style="color: white;margin-right: 10px;"></i>
+              <span>History</span>
+            </router-link>
+          </el-menu-item>
+          <el-menu-item index="6">
             <router-link to="/logout">
               <i class="el-icon-s-opportunity" style="color: white;margin-right: 10px;"></i>
               <span>Logout</span>
@@ -92,8 +96,6 @@
       <!-- <keep-alive> -->
         <router-view></router-view>
       <!-- </keep-alive> -->
-      <!-- <MainTalks v-if="mount==-1"></MainTalks>
-          <Quest v-else-if="mount==1"></Quest> -->
     </el-container>
   </div>
 </template>
