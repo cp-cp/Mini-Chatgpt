@@ -17,6 +17,11 @@
                         <el-form-item label="content">
                             <span>{{ props.row.content }}</span>
                         </el-form-item>
+                        <el-form-item label="keyWords">
+                            <!-- <template slot-scope="scope"> -->
+                                <div>{{ formatKeywords(props.row.keyWords) }}</div>
+                            <!-- </template> -->
+                        </el-form-item>
                     </el-form>
                 </template>
             </el-table-column>
@@ -101,6 +106,17 @@ export default {
                     console.log(error);
                 });
         },
+        // formatKeywords(keywords) {
+        //     console.log(keywords);
+        //     const wordlist = keywords.map(item => item.keyWords);
+        //     return wordlist.join('; ');
+        // },
+        formatKeywords(keywords) {
+            console.log(keywords);
+            const wordlist = keywords ? keywords.map(item => item.words) : [];
+            return wordlist.join('; ');
+        },
+
     },
     mounted() {
         this.loadAll();
