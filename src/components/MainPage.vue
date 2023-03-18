@@ -84,14 +84,19 @@
               <span>History</span>
             </router-link>
           </el-menu-item>
+        <el-menu-item index="7">
+          <router-link to="/image">
+            <i class="el-icon-folder-opened" style="color: white;margin-right: 10px;"></i>
+            <span>WorldCloud</span>
+          </router-link>
+        </el-menu-item>
           <el-menu-item index="6">
             <router-link to="/logout">
-              <i class="el-icon-s-opportunity" style="color: white;margin-right: 10px;"></i>
-              <span>Logout</span>
+              <!-- <i class="el-icon-s-opportunity" style="color: white;margin-right: 10px;"></i> -->
+                <span><logout></logout></span>
             </router-link>
           </el-menu-item>
         </el-menu>
-
       </el-aside>
       <!-- <keep-alive> -->
         <router-view></router-view>
@@ -101,8 +106,12 @@
 </template>
   
 <script>
+import Images from './image.vue';
+import Logout from './logout.vue';
 export default {
   components: {
+    Logout,
+    Images
   },
   methods: {
     rpplus() {

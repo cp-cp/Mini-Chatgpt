@@ -32,12 +32,11 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['setIsAuthenticated','setUserName','setUserId']),
+    ...mapMutations(['setIsAuthenticated', 'setUserName', 'setUserId']),
     handleSubmit() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          // 模拟登录请求
-          axios.post('http://localhost:8080/user/login', this.form)
+          axios.post('http://localhost:8080/user/login', this.form, { timeout: 5000 })
             .then(response => {
               if (response.status === 200) {
                 // 登录成功，更新isAuthenticated状态并跳转到主页
@@ -48,14 +47,23 @@ export default {
                 this.$router.push({ name: 'mainpage' });
               } else {
                 // 登录失败，弹出提示框
-                console.log(response)
+                alert("登陆失败");
                 this.$message.error(response.message);
               }
             })
             .catch(error => {
-              console.log(error);
-              this.$message.error('Failed to login, please try again later.');
+              if (axios.isCancel(error)) {
+                console.log('Request canceled:', error.message);
+              } else {
+                console.log(error);
+                this.$message.error('Failed to login, please try again later.');
+              }
+              // 请求超时处理
+              if (error.code === 'ECONNABORTED') {
+                alert('请求超时，请稍后再试！');
+              }
             });
+
         } else {
           return false;
         }

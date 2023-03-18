@@ -1,8 +1,10 @@
 <template>
     <el-card class="text-card">
+      <!-- <p> -->
       <div class="text-container">
         {{ displayText }}
       </div>
+      <!-- </p> -->
     </el-card>
   </template>
   

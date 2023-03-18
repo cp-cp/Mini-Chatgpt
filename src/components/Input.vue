@@ -35,7 +35,7 @@ import { computed } from 'vue';
            //console.log(this.questions);
         })
         .catch(error => {
-          //console.log(error);
+          // alert("对不起");
         });
         return [];
       },
