@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      isAuthenticated: true,//记得修改回false
+      isAuthenticated: false,//记得修改回false
       username:"",
       userid:0,
     },

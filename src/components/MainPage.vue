@@ -87,7 +87,7 @@
         <el-menu-item index="7">
           <router-link to="/image">
             <i class="el-icon-folder-opened" style="color: white;margin-right: 10px;"></i>
-            <span>WorldCloud</span>
+            <span>WordCloud</span>
           </router-link>
         </el-menu-item>
           <el-menu-item index="6">

@@ -5,7 +5,7 @@
             <el-form-item label="问题标题">
                 <el-input v-model="form.title"></el-input>
             </el-form-item>
-            <el-form-item label="问题内容" >
+            <el-form-item label="回答内容" >
                 <el-input type="textarea" v-model="form.content"   :autosize="{ minRows: 5, maxRows: 10}"></el-input>
             </el-form-item>
             <el-form-item>

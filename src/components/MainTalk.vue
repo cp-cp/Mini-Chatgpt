@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-header>
-            什么都没有
+            Mini-Chat
             <el-button style="float: right;margin:10px;" @click="saveCards">储存对话</el-button>
         </el-header>
         <el-main class="chat-message">
@@ -147,7 +147,7 @@ export default {
                     { title: '3', body: this.message.message, }
                 )
             }
-            //button.disabled= false;//记得打开
+            button.disabled= false;//记得打开
         },
         handleTextLoading() {
             const elMain = document.querySelector('.el-main');
@@ -172,7 +172,7 @@ export default {
                 }
             })
             const button = this.$refs.sendInput.$refs.sendTo;
-            //button.disabled = false;//记得打开
+            button.disabled = false;//记得打开
         },
         saveCards() {
             //const data = JSON.stringify(this.cards.slice(1).map(card => card.body));

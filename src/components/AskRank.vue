@@ -1,6 +1,6 @@
 <template>
     <el-card style="weight: 100%;">
-      <h3>问题排行榜</h3>
+      <h3>提问排行榜</h3>
       <el-table :data="users" stripe height="550px" border>
         <el-table-column label="排名" width="80">
           <template slot-scope="scope">{{ scope.$index + 1 }}</template>
